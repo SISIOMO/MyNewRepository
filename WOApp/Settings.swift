@@ -22,7 +22,7 @@ enum WeightUnit: Int {
 
 struct SettingsPropertyKey {
     static let myWeight     = "myWeight"
-    static let weightUnit = "weightUnit"
+    static let weightUnit   = "weightUnit"
 }
 
 
