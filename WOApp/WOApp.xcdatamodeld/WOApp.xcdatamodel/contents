@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Exercise" representedClassName=".Exercise" syncable="YES" codeGenerationType="category">
+        <attribute name="isBodyWeight" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isOneSide" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" minValueString="0" indexed="YES" syncable="YES"/>
+        <relationship name="mySets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MySet" inverseName="exercise" inverseEntity="MySet" syncable="YES"/>
+        <relationship name="primaryMuscle" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Muscle" inverseName="primaryExercises" inverseEntity="Muscle" syncable="YES"/>
+        <relationship name="secondaryMuscles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Muscle" inverseName="secondaryExercises" inverseEntity="Muscle" syncable="YES"/>
+    </entity>
+    <entity name="Muscle" representedClassName=".Muscle" syncable="YES" codeGenerationType="category">
+        <attribute name="name" attributeType="String" minValueString="0" indexed="YES" syncable="YES"/>
+        <relationship name="muscleGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MuscleGroup" inverseName="muscles" inverseEntity="MuscleGroup" syncable="YES"/>
+        <relationship name="primaryExercises" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Exercise" inverseName="primaryMuscle" inverseEntity="Exercise" syncable="YES"/>
+        <relationship name="secondaryExercises" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Exercise" inverseName="secondaryMuscles" inverseEntity="Exercise" syncable="YES"/>
+    </entity>
+    <entity name="MuscleGroup" representedClassName=".MuscleGroup" syncable="YES" codeGenerationType="category">
+        <attribute name="name" attributeType="String" minValueString="0" indexed="YES" syncable="YES"/>
+        <relationship name="muscles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Muscle" inverseName="muscleGroup" inverseEntity="Muscle" syncable="YES"/>
+    </entity>
+    <entity name="MySet" representedClassName=".MySet" syncable="YES" codeGenerationType="category">
+        <attribute name="index" attributeType="Integer 64" minValueString="0" defaultValueString="0" usesScalarValueType="YES" indexed="YES" syncable="YES"/>
+        <attribute name="reps" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="weight" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="exercise" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Exercise" inverseName="mySets" inverseEntity="Exercise" syncable="YES"/>
+        <relationship name="workout" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Workout" inverseName="mySets" inverseEntity="Workout" syncable="YES"/>
+    </entity>
+    <entity name="Workout" representedClassName=".Workout" syncable="YES" codeGenerationType="category">
+        <attribute name="dateEnd" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="dateStart" attributeType="Date" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
+        <attribute name="duration" optional="YES" attributeType="Date" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="mySets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MySet" inverseName="workout" inverseEntity="MySet" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Exercise" positionX="-4610" positionY="-2889" width="128" height="133"/>
+        <element name="Muscle" positionX="-4347" positionY="-2862" width="128" height="103"/>
+        <element name="MuscleGroup" positionX="-4115" positionY="-2862" width="128" height="73"/>
+        <element name="MySet" positionX="-4833" positionY="-2875" width="128" height="118"/>
+        <element name="Workout" positionX="-5069" positionY="-2889" width="128" height="118"/>
+    </elements>
+</model>
